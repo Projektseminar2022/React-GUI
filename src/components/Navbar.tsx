@@ -1,4 +1,9 @@
-export default function Navbar() {
+import {User} from "../shared/models/User";
+
+export default function Navbar(props: {user: User}) {
+
+
+
     return (
         <div className="navbar bg-primary text-primary-content rounded-[25px]">
             <div className="flex-1">
@@ -13,7 +18,7 @@ export default function Navbar() {
                         </div>
                     </label>
                     <ul tabIndex={0}
-                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52">
                         <li>
                             <a className="justify-between">
                                 Profile
