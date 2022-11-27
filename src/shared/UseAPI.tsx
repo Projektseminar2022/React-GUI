@@ -1,3 +1,6 @@
+// noinspection JSIgnoredPromiseFromCall
+// noinspection react-hooks/exhaustive-deps
+
 import {useEffect, useState} from "react";
 import APIService from "./APIService";
 

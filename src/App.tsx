@@ -1,12 +1,20 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <div className="bg-primary h-full w-full box-content">
-      <button className={"text-base btn btn-primary text-2xl"}>spps</button>
-    </div>
+    <>
+      <div className="bg-primary h-full w-full box-content">
+        <Balls/>
+      </div>
+    </>
   );
 }
 
-export default App;
+function Balls() {
+  return (
+    <>
+      <label>Cock and Ball torture</label>
+    </>
+  )
+}
