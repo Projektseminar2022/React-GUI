@@ -5,16 +5,16 @@ export default function App() {
   return (
     <>
       <div className="bg-primary h-full w-full box-content">
-        <Balls/>
+        <ExampleFunc/>
       </div>
     </>
   );
 }
 
-function Balls() {
+function ExampleFunc() {
   return (
     <>
-      <label>Cock and Ball torture</label>
+      <label>func</label>
     </>
   )
 }
