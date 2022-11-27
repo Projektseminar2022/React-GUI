@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 import Lander from "./App/Lander";
 
 export default function App() {
@@ -13,7 +13,13 @@ export default function App() {
           <div className={"mt-2"}>
             <BrowserRouter>
               <Routes>
-                <Route path={"/"} element={<Lander/>}/>
+                <Route path="/" element={<Lander/>}>
+                  <Route index element={<Lander/>}></Route>
+                  <Route path=":id" element={<User/>}/>
+                  <Route path="id" element={<></>}>
+                    <Route path=":ids" element={<Users/>}/>
+                  </Route>
+                </Route>
               </Routes>
             </BrowserRouter>
           </div>
@@ -21,6 +27,26 @@ export default function App() {
       </div>
     </>
   );
+}
+
+function User(){
+  let {id} = useParams()
+
+  return (
+    <>
+      <label>{id}</label>
+    </>
+  )
+}
+
+function Users(){
+  let {ids} = useParams()
+
+  return (
+    <>
+      <label>{ids}</label>
+    </>
+  )
 }
 
 function ExampleFunc() {
