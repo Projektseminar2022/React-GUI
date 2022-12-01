@@ -12,9 +12,9 @@ export default function App() {
   return (
     <>
       <div className="h-full w-full min-h-screen">
-        <div className={"m-4"}>
+        <div>
           <Navbar/>
-          <div className={"mt-2"}>
+          <div className={"mt-14 px-8"}>
             <BrowserRouter>
               <Routes>
                 <Route path={"/"} element={<Lander/>}/>
