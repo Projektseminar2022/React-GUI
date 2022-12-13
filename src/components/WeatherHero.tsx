@@ -8,7 +8,7 @@ export default function WeatherHero() {
                 <h1 className={"text-5xl"}>Wetter Köln</h1>
             </div>
             <div className="divider"></div>
-            <div className="hero min-h-max bg-base-200 justify-start">
+            <div className="hero text-white min-h-max bg-gradient-to-r from-sky-500 to-indigo-500 justify-start">
                 <div className="hero-content flex-col lg:flex-row justify-start">
 
                     <div>
