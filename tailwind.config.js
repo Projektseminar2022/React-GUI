@@ -7,14 +7,14 @@ module.exports = {
     extend: {},
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      {
-        forest: {
-          ...require("daisyui/src/colors/themes")["[data-theme=forest]"],
-          "base-100": "#2A303C"
-        }
-      }
-    ]
-  },
+  // daisyui: {
+  //   themes: [
+  //     {
+  //       forest: {
+  //         ...require("daisyui/src/colors/themes")["[data-theme=forest]"],
+  //         "base-100": "#2A303C"
+  //       }
+  //     }
+  //   ]
+  //},
 }
