@@ -17,7 +17,11 @@ const APIService = {
   },
   postGame: async (game: Game) => {
     return postRequest(`http://localhost:8080/saveGame`, game)
-  }
+  },
+  getBoxDataSimple: async  (hour_from: number, hour_to: number) => { //TODO add return type
+    //im optimalfall anfrage so: gib mir temp von stunde x bis y
+    return getRequest(`api.link.here`) //TODO: add link here
+  },
 }
 
 export default APIService;
