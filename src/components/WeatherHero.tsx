@@ -14,7 +14,7 @@ export default function WeatherHero() {
                     <div>
                         <h1 className="text-5xl font-bold">wolkig</h1>
                         <h2 className="text-3xl font-bold">12°</h2>
-                        <p className="py-6">Blah Blah Blah Wetterinfos, schönes tolles Wetter hier</p>
+                        <p className="py-6">Blah Blah Blah Wetterinfos, schönes tolles Wetter hier, aber waren Sie schon in Baden-Würtemberg</p>
                     </div>
                 </div>
             </div>
