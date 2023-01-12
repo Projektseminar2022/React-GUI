@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BoxData} from "../shared/models/BoxData";
 import {BoxDataSimple} from "../shared/models/BoxDataSimple";
 import useAPI from "../shared/UseAPI";
 
-
 export default function DataBoxHour() {
+    let date = new Date();
 
+    //get the data for the hours until 12pm from the api
+    const boxAPI = useAPI<BoxData>("getBoxDataSimple", date.getTime(), 12); //TODO finish this
     const [boxData, setBoxData] = useState<BoxData>({
         humidity_in_percent: 0,
         pressure_in_hpa: 0,
@@ -19,14 +21,17 @@ export default function DataBoxHour() {
         wind_gust_speed: 0,
         wind_speed: 0,
         desc: "", icon: "", id: 0, selected: false, temp: 0, time: ""});
-
+    const [selectedBox, setSelectedBox] = useState<number>(100000);
     const [boxDataSimple, setBoxDataSimple] = useState<BoxDataSimple>({extended: "", id: 0, temp: 0, time: ""});
 
+    useEffect(() => {
+        boxAPI.getData()
+    }, [selectedBox])
 
-    let date = new Date();
-
-    //get the data for the hours until 12pm from the api
-    useAPI<BoxDataSimple>("getBoxDataSimple", date.getTime(), 12); //TODO finish this
+    useEffect(() => {
+        setBoxData(boxAPI.data);
+    }
+    , [boxAPI.data])
 
     //create an array of 10 mockup weather data
     const mockupData = [
@@ -78,13 +83,14 @@ export default function DataBoxHour() {
             <div className="divider"></div>
             <div className={"flex flex-row justify-center"}>
                 {/*iterate over the mock data*/}
-                {mockupData.map((data) => (
-                  <DataBox boxData={boxData}/>
+                {mockupData.map((data, key) => (
+                  <DataBox boxData={boxData} selected={selectedBox} setSelected={setSelectedBox} akey={key}/>
                     )
                 )}
             </div>
 
-        <WeatherInfo boxData={boxData}/>
+
+        <WeatherInfo boxData={boxData} />
 
         {/*  see: https://i.imgur.com/WOCsOrK.png   */}
         </div>
@@ -92,9 +98,15 @@ export default function DataBoxHour() {
     );
 }
 
-function DataBox(props: { boxData: BoxData }) {
+function DataBox(props: { boxData: BoxData, selected: number, setSelected: React.Dispatch<React.SetStateAction<number>>, akey: number}) {
+    const apiBoxData = useAPI<BoxData>("getBoxDataSimple", props.akey, 0);
     return (
-        <div className={`border rounded-md h-fit w-fit m-3 p-3 ${props.boxData.selected ? "border-primary" : "border-gray-600"}`}>
+        <div className={`border rounded-md h-fit w-fit m-3 p-3 ${props.selected === props.akey ? "border-primary" : "border-gray-600"}`}
+            onClick={() => {
+                props.setSelected(props.akey);
+                console.log(props.selected);
+            }}
+        >
             <div className={"flex flex-col"}>
                 <span className={"text-xl font-bold"}>{props.boxData.time}</span>
                 <div className={"flex justify-center"}>
