@@ -146,4 +146,3 @@ function WeatherInfo(props : { boxData: BoxData }) {
     </div>
     );
 }
-
