@@ -12,6 +12,10 @@ async function postRequest(path: string, body: any) {
   return axios.post(path, body, {headers: {}})
 }
 
+async function deleteRequest(path: string) {
+  return axios.delete(path, {headers: {}})
+}
+
 const APIService = {
   getBoxDataSimple: async  (hour_from: number, hour_to: number) => { //TODO add return type
     //im optimalfall anfrage so: gib mir temp von stunde x bis y
@@ -46,6 +50,15 @@ const APIService = {
   },
   getLocation: async (latitude: number, longitude: number) => {
     return getRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`)
+  },
+  postLocation: async (latitude: number, longitude: number) => {
+    return postRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`, {})
+  },
+  deleteLocation: async (latitude: number, longitude: number) => {
+    return deleteRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`)
+  },
+  getWeatherForecast: async (latitude: number, longitude: number) => {
+    return getRequest(`http://localhost:8080/api/WeatherForecast?latitude=${latitude}&longitude=${longitude}`)
   }
 }
 
