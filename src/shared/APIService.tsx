@@ -2,6 +2,10 @@ import axios from "axios";
 import {Game} from "./models/Game";
 import {User} from "./models/User";
 
+const USER_SERVICE_URL = "http://localhost:8080";
+const QUERY_SERVICE_URL = "http://localhost:8080";
+const DATA_AQUISITION_SERVICE_URL = "http://localhost:8080";
+
 async function getRequest(path: string) {
   return axios.get(path, {
     headers: {}
@@ -23,42 +27,42 @@ const APIService = {
   },
   //User Service
   createUser: async (user: User) => {
-    return postRequest(`http://localhost:8080/adduser`, user)
+    return postRequest( `${USER_SERVICE_URL}/adduser`, user)
   },
   getUser: async (id: number) => {
-    return getRequest(`http://localhost:8080/getUser/${id}`)
+    return getRequest(`${USER_SERVICE_URL}/getUser/${id}`)
   },
   getUsers: async () => {
-    return getRequest(`http://localhost:8080/getusers`)
+    return getRequest(`${USER_SERVICE_URL}/getusers`)
   },
   deleteUser: async (id: number) => { //TODO nachfragen: im code ist im mapping keine Id
-    return getRequest(`http://localhost:8080/deleteUser/${id}`)
+    return deleteRequest(`${USER_SERVICE_URL}/deleteUser/${id}`)
   },
   // Query Service
   getQueryByLocationAndTime: async (location: string, time: number) => {
-    return getRequest(`http://localhost:8080/query/find-by-location-and-time?location=${location}&time=${time}`)
+    return getRequest(`${QUERY_SERVICE_URL}/query/find-by-location-and-time?location=${location}&time=${time}`)
   },
   getQueryByLocation: async (location: string) => {
-    return getRequest(`http://localhost:8080/query/find-by-location-at-current-time?location=${location}`)
+    return getRequest(`${QUERY_SERVICE_URL}/query/find-by-location-at-current-time?location=${location}`)
   },
   getQueryByUser: async (user: User) => {
-    return getRequest(`http://localhost:8080/query/find-by-user`) //TODO user sollte hier besser als parameter übergeben werden (id)
+    return getRequest(`${QUERY_SERVICE_URL}/query/find-by-user`) //TODO user sollte hier besser als parameter übergeben werden (id)
   },
   //Data Acquisition Service
   getAllLocations: async () => {
-    return getRequest(`http://localhost:8080/api/Locations/all`)
+    return getRequest(`${DATA_AQUISITION_SERVICE_URL}/api/Locations/all`)
   },
   getLocation: async (latitude: number, longitude: number) => {
-    return getRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`)
+    return getRequest(`${DATA_AQUISITION_SERVICE_URL}/api/Locations?latitude=${latitude}&longitude=${longitude}`)
   },
   postLocation: async (latitude: number, longitude: number) => {
-    return postRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`, {})
+    return postRequest(`${DATA_AQUISITION_SERVICE_URL}/api/Locations?latitude=${latitude}&longitude=${longitude}`, {})
   },
   deleteLocation: async (latitude: number, longitude: number) => {
-    return deleteRequest(`http://localhost:8080/api/Locations?latitude=${latitude}&longitude=${longitude}`)
+    return deleteRequest(`${DATA_AQUISITION_SERVICE_URL}/api/Locations?latitude=${latitude}&longitude=${longitude}`)
   },
   getWeatherForecast: async (latitude: number, longitude: number) => {
-    return getRequest(`http://localhost:8080/api/WeatherForecast?latitude=${latitude}&longitude=${longitude}`)
+    return getRequest(`${DATA_AQUISITION_SERVICE_URL}/api/WeatherForecast?latitude=${latitude}&longitude=${longitude}`)
   }
 }
 
