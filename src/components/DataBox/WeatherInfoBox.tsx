@@ -1,6 +1,30 @@
 import {WeatherData} from "../../shared/models/WeatherData";
 import React from "react";
 
+function handleRainData(rain: any) {
+    // "rain": {
+    //     "1h": 0.24
+    // }
+
+    let rainData = [];
+
+    if (rain === null) {
+        rainData.push(
+            <p key={0}>Zeitraum: 0h</p>,
+            <p key={1}>Regen: 0 mm</p>
+        );
+    } else {
+        for (let key in rain) {
+            rainData.push(
+                <p key={key}>Zeitraum: {key.replaceAll("h","")}h</p>,
+                <p key={key}>Regen: {rain[key]} mm</p>
+
+            );
+        }
+    }
+    return rainData;
+}
+
 export function WeatherInfoBox(props: { boxData: WeatherData | undefined}) {
     if (props.boxData === undefined) {
         return (
@@ -21,12 +45,9 @@ export function WeatherInfoBox(props: { boxData: WeatherData | undefined}) {
                 <div className={"grid grid-cols-3 gap-10 mt-3"}>
                     <div className={"flex flex-col justify-center"}>
                         <h3 className={"text-1xl font-extrabold"}>Niederschlag</h3>
-                        {/*{props.boxData.weather.rain === null ?*/}
-                        {/*    <span className={"text-xl font-bold"}>0mm</span>*/}
-                        {/*    :*/}
-                        {/*    <span className={"text-xl font-bold"}>{props.boxData.rain}mm</span>}*/}
-                        <p className={"text"}>{}% Risiko</p>
-                        <p className={"text"}>{} l/m^2</p>
+                        {handleRainData(props.boxData.weather.rain)}
+                        {/*<p className={"text"}>{}% Risiko</p>*/}
+                        {/*<p className={"text"}>{} l/m^2</p>*/}
                     </div>
                     <div className={"flex flex-col justify-center"}>
                         <h3 className={"text-1xl font-extrabold"}>Wind</h3>

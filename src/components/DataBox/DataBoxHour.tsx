@@ -9,16 +9,10 @@ function renderDataBoxes(selectedBox: number, setSelectedBox: React.Dispatch<Rea
 
     for (let i = 0; i < weatherData.length; i++) {
         dataBoxes.push(
-            <div id={`box-${i}`} className="carousel-item relative w-full">
-                <div className={"p-20"}>
+            <div id={`box-${weatherData[i].weather.dt}`}>
                     <WeatherDataSelector boxdata={weatherData[i]} selected={selectedBox} setSelected={setSelectedBox}
                                          akey={weatherData[i].weather.dt}/>
-                </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href={`#box-${i-1 < 0 ? weatherData.length : i-1}`} className="btn btn-circle">❮</a>
-                    <a href={`#box-${i+1 > weatherData.length ? 0 : i+1}`} className="btn btn-circle">❯</a>
-                </div>
-            </div>
+             </div>
                 );
     }
     return dataBoxes;
@@ -64,17 +58,17 @@ export default function DataBoxHour() {
                 <h1 className={"text-2xl font-bold"}>Stündlich</h1>
                 <div className="divider"></div>
                 <div className={"flex flex-row justify-center"}>
-                    <div className={"carousel w-2/4"}>
+                    <div className={"grid grid-flow-col auto-col-max w-2/4 overflow-hidden overflow-x-hidden overflow-y-hidden"}>
                         {renderDataBoxes(selectedBox, setSelectedBox, composedWeatherData)}
                     </div>
                 </div>
 
-                <div className={"flex justify-center"}>
-                    <WeatherInfoBox boxData={selectedWeatherData}/>
-                </div>
+                {/*<div className={"flex justify-center"}>*/}
+                {/*    <WeatherInfoBox boxData={selectedWeatherData}/>*/}
+                {/*</div>*/}
 
                 {/*  see: https://i.imgur.com/WOCsOrK.png   */}
             </div>
         );
-    }
+    // }
 }

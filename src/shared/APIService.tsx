@@ -4,7 +4,7 @@ import {WeatherData} from "./models/WeatherData";
 
 const USER_SERVICE_URL = "http://localhost:8080";
 const QUERY_SERVICE_URL = "http://localhost:8080";
-const DATA_AQUISITION_SERVICE_URL = "http://localhost:5098";
+const DATA_AQUISITION_SERVICE_URL = "http://localhost:8080";
 
 async function getRequest(path: string) {
   return axios.get(path, {
