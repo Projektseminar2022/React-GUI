@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import APIService from "./APIService";
 
 export default function useAPI<T>(method: string, ...params: any[]) {
-  const [data, setData]           = useState([] as T);
+  const [data, setData]           = useState<T>([] as T);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError]         = useState("");
 
@@ -15,8 +15,8 @@ export default function useAPI<T>(method: string, ...params: any[]) {
     try {
       setIsLoading(true);
       // @ts-ignore
-      const temp: T = await APIService[method](...params);
-      setData(temp);
+      const temp = await APIService[method](...params);
+      setData(temp.data);
     } catch (e: any) {
       setError(e.message);
     } finally {

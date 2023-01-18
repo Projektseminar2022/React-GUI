@@ -13,6 +13,7 @@ export function WeatherDataSelector(props: { boxdata: WeatherData, selected: num
             className={`border rounded-md h-fit w-auto m-3 p-3 hover:cursor-pointer ${props.selected === props.akey ? "border-primary" : "border-gray-600"}`}
             onClick={() => {
                 props.setSelected(props.akey);
+                debugger
                 console.log(props.selected);
             }}
         >
