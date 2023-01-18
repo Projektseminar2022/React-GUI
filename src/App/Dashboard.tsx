@@ -1,5 +1,5 @@
 import WeatherHero from "../components/WeatherHero";
-import DataBoxHour from "../components/DataBoxHour";
+import DataBoxHour from "../components/DataBox/DataBoxHour";
 
 export default function Dashboard() {
     return (
@@ -8,5 +8,6 @@ export default function Dashboard() {
             <div className={"divider"}></div>
             <DataBoxHour/>
         </div>
+
     )
 }

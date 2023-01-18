@@ -1,4 +1,4 @@
-export interface BoxDataSimple {
+export interface WeatherDataSimple {
     id: number
     time: string
     temp: number
