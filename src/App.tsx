@@ -4,9 +4,7 @@ import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 import Lander from "./App/Lander";
 import Dashboard from "./App/Dashboard";
-import PageNotFound from "./components/PageNotFound";
-import {Params} from "react-router";
-import {User} from "./shared/models/User";
+import PageNotFound from "./components/utility/PageNotFound";
 
 
 export default function App() {
